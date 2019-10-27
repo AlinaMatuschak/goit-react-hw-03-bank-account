@@ -9,27 +9,21 @@ import storage from './helpers/localStorege';
 export default class Dashboard extends Component {
   state = {
     transactions: [],
-    balance: 0,
   };
 
   componentDidMount() {
     const transactions = storage.get('transactions');
-    const balance = storage.get('balance');
 
-    if (transactions && balance) {
-      this.setState({ transactions, balance });
+    if (transactions) {
+      this.setState({ transactions });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { transactions, balance } = this.state;
+    const { transactions } = this.state;
 
     if (prevState.transactions !== transactions) {
       storage.save('transactions', transactions);
-    }
-
-    if (prevState.balance !== balance) {
-      storage.save('balance', balance);
     }
   }
 
@@ -44,6 +38,10 @@ export default class Dashboard extends Component {
     return this.state.transactions
       .filter(el => el.type === type)
       .reduce((count, el) => (count += el.amount), 0);
+  };
+
+  findBalance = () => {
+    return this.findSumByType('deposit') - this.findSumByType('withdraw');
   };
 
   handleTransfer = (amount, type) => {
@@ -66,7 +64,7 @@ export default class Dashboard extends Component {
         <Controls onTransfer={this.handleTransfer} balance={balance} />
 
         <Balance
-          balance={balance}
+          balance={this.findBalance()}
           income={this.findSumByType('deposit')}
           expenses={this.findSumByType('withdraw')}
         />
