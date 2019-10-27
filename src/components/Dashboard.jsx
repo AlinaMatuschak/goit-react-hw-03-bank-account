@@ -58,13 +58,14 @@ export default class Dashboard extends Component {
   };
 
   render() {
-    const { balance, transactions } = this.state;
+    const { transactions } = this.state;
+    const balance = this.findBalance();
     return (
       <div className="dashboard">
         <Controls onTransfer={this.handleTransfer} balance={balance} />
 
         <Balance
-          balance={this.findBalance()}
+          balance={balance}
           income={this.findSumByType('deposit')}
           expenses={this.findSumByType('withdraw')}
         />
