@@ -41,9 +41,7 @@ export default class Controls extends Component {
       return;
     }
 
-    target.name === 'deposit'
-      ? onTransfer(amount, target.name)
-      : onTransfer(amount, target.name);
+    onTransfer(amount, target.name);
     this.reset();
   };
 
