@@ -1,0 +1,22 @@
+.history {
+  border: 2px solid #ebeef2;
+  padding: 0;
+  width: 865px;
+  border-collapse: collapse;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+tr {
+  height: 65px;
+  border: 2px solid #ebeef2;
+}
+
+th {
+  width: 290px;
+}
+
+thead tr th {
+  border: 2px solid #fff;
+  background-color: #ebeef2;
+}

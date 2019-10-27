@@ -1,0 +1,10 @@
+.balanceTransactions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95px;
+}
+
+.balanceTransactions span {
+  margin: 30px;
+}
